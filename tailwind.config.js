@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./*.{html,js}"],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     screens: {
       sm: '480px',
@@ -23,9 +23,6 @@ module.exports = {
     },
     fontFamily: {
       sans: ['Corbel', 'sans-serif'],
-    },
-    backgroundSize: {
-      coverPlus: 'auto 90%'
     },
     extend: {      
       keyframes:{
