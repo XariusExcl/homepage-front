@@ -9,6 +9,7 @@ module.exports = {
       xl: '1440px',
     },
     colors: {
+      'darker-primary': '#212129',
       'primary': '#5E5EFF',
       'purple': '#7e5bef',
       'pink': '#ff49db',
@@ -18,6 +19,7 @@ module.exports = {
       'gray-dark': '#273444',
       'gray': '#8492a6',
       'gray-light': '#d3dce6',
+      'white': '#ffffff'
     },
     fontFamily: {
       sans: ['Corbel', 'sans-serif'],

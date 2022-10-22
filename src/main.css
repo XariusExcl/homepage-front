@@ -1,10 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-html, body {
-    background-color: #212129;
-    font-family: "Corbel";
-    font-weight: light;
-    color: white;
-}
