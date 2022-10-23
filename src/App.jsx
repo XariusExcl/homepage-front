@@ -30,13 +30,13 @@ const App = () => {
             image={"tn_echo.png"}
             title={"Echo (Game)"}
             description={"Entry for Ludum Dare 51 Game Jam : \"Every 10 seconds\""}
-            link={"https://plume.itch.io/echo"}
+            link={"https://plumie.itch.io/echo"}
           />
           <ProjectMini
             image={"tn_wrecklessbar.png"}
             title={"Wreckless Bar (Game)"}
             description={"Entry for Ludum Dare 49 Game Jam : \"Unstable\""}
-            link={"https://plume.itch.io/wreckless-bar"}
+            link={"https://plumie.itch.io/wreckless-bar"}
           />
         </div>
       </div>
