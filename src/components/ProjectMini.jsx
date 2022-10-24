@@ -1,6 +1,6 @@
 const ProjectMini = ({image, title, description, link}) => {
     return (
-        <div className="w-72 mx-10">
+        <div className="w-72 mx-10 my-3">
         <a href={link} target="_blank">
         <div
             className="w-full h-40 rounded-3xl shadow-md hover:shadow-xl transition-shadow-transform duration-300 hover:scale-110 overflow-hidden">
