@@ -423,6 +423,7 @@ function animate() {
   // renderer.render( scene, camera );
   composer.render();
 }
+resize();
 animate();
 
 function raycastFromMouse(event) {
@@ -440,7 +441,11 @@ function resize() {
   const height = window.innerHeight;
   
   camera.aspect = width / height;
+  const cameraAngle = Math.atan2(camera.position.z, camera.position.x);
+  const cameraDistance = 8.54 * Math.max(1, height / (1.25*width));
+  camera.position.set(Math.cos(cameraAngle) * cameraDistance, camera.position.y, Math.sin(cameraAngle) * cameraDistance);
   camera.updateProjectionMatrix();
+
   renderer.setSize(width, height);
   composer.setSize(width, height);
 }
