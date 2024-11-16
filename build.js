@@ -36,7 +36,7 @@ const getPosts = () => {
 // Update the built index file with the latest blog posts
 const indexFile = fs.readFileSync('./dist/index.html', 'utf8');
 const updatedIndexFile = indexFile.replace(/{{ \$blogposts }}/s, getPosts().map(post => `
-  <a href="/blog/${post.url}" class="mx-10">
+  <a href="/blog/${post.url}" style="margin-right:2.5rem;">
     <article class="flex flex-col bg-gray-950 bg-opacity-40 w-96 h-full p-6 rounded-xl">
       <h3 class="text-4xl font-bold pb-2">${post.title}</h3>
         <div class="w-10/12 flex items-center ml-auto">
