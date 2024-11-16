@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="build/output.css" />
+  <title>The Three Little Mages' Home</title>
+  <link rel="icon" href="/favicon.png" />
+  <script type="module" src="main.js"></script>
+</head>
+<body>
+  <div id="scene" class="h-screen w-full absolute top-0 -z-1" style="z-index:-1;">
+  </div>
+  <div class="flex flex-col items-center py-8 md:py-16 absolute -translate-x-1/2 md:translate-y-16 left-1/2 w-full md:max-w-[720px] lg:max-w-[960px] bg-gray-950 bg-opacity-40 md:rounded-xl ">
+    <h1 class="text-4xl md:text-6xl lg:text-8xl font-bold mb-4 flex">
+      <span class="block aos-fade-in ml-1.5 md:ml-3 lg:ml-4" >Three</span>
+      <span class="block aos-fade-in ml-1.5 md:ml-3 lg:ml-4" style="animation-delay: .3s !important;">Little</span>
+      <span class="block aos-fade-in ml-1.5 md:ml-3 lg:ml-4" style="animation-delay: .35s !important;">Mages</span></h1>
+    <hr class="w-1/2" />
+    <p class="text-lg mt-2">Welcome to our homepage!</p>
+  </div>
+  <div class="absolute -translate-x-1/2 max-md:bottom-24 md:translate-y-96 left-1/2">
+    <a href="#about" class="text-3xl font-bold bg-gray-950 bg-opacity-40 py-4 px-7 rounded-full absolute animate-bounce">↓</a>
+  </div>
+  <div id="content" class="absolute top-full flex flex-col w-full">
+    <div id="about" class="min-h-screen w-10/12 mx-auto pt-6">
+      <h2 class="text-8xl font-bold aos-fade-in">About us</h2>
+      <hr class="w-1/2" />
+      <div class="ml-5 my-8">
+        <p class="text-2xl">We are little mages who love to code and create things.</p>
+        <p class="text-2xl">We are currently working on a new project, so stay tuned!</p>
+      </div>
+      <p class="text-2xl">Latest from the ether source :</p>
+      <div class="flex justify-center mt-8">
+        <div id="blogposts" class="flex justify-center mt-5 bg-gray-950 bg-opacity-10 w-full p-8 overflow-x-scroll rounded-xl">
+          {{ $blogposts }}
+          <div class="flex items-center">
+            <a href="/blog" class="text-lg mx-2 bg-gray-950 bg-opacity-40 p-4 mt-4 rounded-xl">More posts...</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="projects" class="min-h-screen w-10/12 mx-auto pt-6">
+      <h2 class="text-8xl font-bold aos-fade-in">Games & projects</h2>
+      <hr class="w-1/2" />
+      <div class="flex justify-center mt-40">
+        <div class="flex justify-center flex-col flex-wrap mt-5 md:flex-row">
+          <div class="w-72 mx-10 my-3"><a href="https://plumie.itch.io/echo" target="_blank">
+              <div
+                class="w-full h-48 lg:h-96 rounded-3xl shadow-md hover:shadow-xl transition-shadow-transform duration-300 hover:scale-110 overflow-hidden">
+                <img src="/tn_echo.png" alt=""
+                  class="object-cover object-center h-full w-full scale-110 transition-transform duration-300 hover:scale-100">
+              </div>
+            </a>
+            <div class="text-3xl font-bold italic mt-6">Echo <span class="text-xl text-gray-600">• 2022</span></div>
+            <div class="text-gray-400">From Ludum Dare 51 Game Jam "Every 10 seconds"</div>
+          </div>
+          <div class="w-72 mx-10 my-3"><a href="https://plumie.itch.io/wreckless-bar" target="_blank">
+              <div
+                class="w-full h-48 lg:h-96 rounded-3xl shadow-md hover:shadow-xl transition-shadow-transform duration-300 hover:scale-110 overflow-hidden">
+                <img src="/tn_wrecklessbar.png" alt=""
+                  class="object-cover object-center h-full w-full scale-110 transition-transform duration-300 hover:scale-100">
+              </div>
+            </a>
+            <div class="text-3xl font-bold italic mt-6">Wreckless Bar <span class="text-xl text-gray-600">• 2021</span></div>
+            <div class="text-gray-400">From Ludum Dare 49 Game Jam: "Unstable"</div>
+          </div>
+          <div class="w-72 mx-10 my-3"><a href="https://s4b4t3r.itch.io/nullbyte" target="_blank">
+              <div
+                class="w-full h-48 lg:h-96 rounded-3xl shadow-md hover:shadow-xl transition-shadow-transform duration-300 hover:scale-110 overflow-hidden">
+                <img src="/tn_nullbyte.webp" alt=""
+                  class="object-cover object-center h-full w-full scale-110 transition-transform duration-300 hover:scale-100">
+              </div>
+            </a>
+            <div class="text-3xl font-bold italic mt-6">NULL_BYTE <span class="text-xl text-gray-600">• 2021</span></div>
+            <div class="text-gray-400">From Ludum Dare 48 Game Jam: "Deeper and deeper"</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="socials" class="w-10/12 mx-auto h- pt-6 pb-32">
+      <h2 class="text-8xl font-bold aos-fade-in">Socials</h2>
+      <hr class="w-1/2" />
+      <div class="ml-5 mt-5">
+        <p class="text-2xl">Follow us on human social media:</p>
+        <div class="flex justify-center">
+          <!-- a href="" class="text-lg mx-2 bg-gray-950 bg-opacity-40 p-4 mt-4 rounded-xl">Discord</a -->
+          <a href="https://bsky.app/profile/xarius.bsky.social" class="text-lg mx-2 bg-gray-950 bg-opacity-40 p-4 mt-4 rounded-xl">Bluesky</a>
+          <a href="https://x.com/xariusexcl" class="text-lg mx-2 bg-gray-950 bg-opacity-40 p-4 mt-4 rounded-xl">Twitter</a>
+          <!-- a href="" class="text-lg mx-2 bg-gray-950 bg-opacity-40 p-4 mt-4 rounded-xl">Instagram</a -->
+          <!-- a href="" class="text-lg mx-2 bg-gray-950 bg-opacity-40 p-4 mt-4 rounded-xl">Youtube</a -->
+          <!-- a href="" class="text-lg mx-2 bg-gray-950 bg-opacity-40 p-4 mt-4 rounded-xl">TikTok</a -->
+        </div>
+      </div>
+    </div>
+    <footer class="absolute w-full bottom-0">
+      <div class="flex justify-center bg-gray-950 bg-opacity-40 p-4">
+        <p class="text-sm">© 2024 Three Little Mages - All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

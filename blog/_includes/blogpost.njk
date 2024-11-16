@@ -1,0 +1,36 @@
+---
+title: The Three Little Mages' Blog
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/assets/output.css" />
+  <title>{{ title }}</title>
+  <link rel="icon" href="/favicon.png" />
+</head>
+<body>
+  <div id="content" class="flex flex-col w-full min-h-screen">
+    <div class="w-10/12 mx-auto pt-6">
+      <h1 class="text-8xl font-bold">Blog</h1>
+      <hr class="w-1/4 mb-10" />
+      <div class="flex">
+        <a href="/blog" class="text-lg bg-gray-950 bg-opacity-40 p-4 mb-4 rounded-xl">← Return to blog</a>
+      </div>
+      <div class="blog flex flex-col">
+        <article class="bg-gray-950 bg-opacity-40 w-full p-8 rounded-xl">
+          <h2 class="text-4xl font-bold">{{ title }}</h2>
+          <span><strong class="text-lg text-gray-600 italic pl-2 font-bold">{{ date|date() }}</strong></span>
+          {{ content | safe }}
+        </article>
+      </div>
+    </div>
+  </div>
+  <footer class="absolute w-full bottom-0">
+    <div class="flex justify-center bg-gray-950 bg-opacity-40 p-4">
+      <p class="text-sm">© 2024 Three Little Mages - All rights reserved.</p>
+    </div>
+  </footer>
+</body>
