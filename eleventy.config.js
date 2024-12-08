@@ -7,6 +7,7 @@ export const config = {
 };
 
 export default function(eleventyConfig) {
+  eleventyConfig.setUseGitIgnore(false);
   eleventyConfig.addFilter("date", function(date) {
     return new Date(date).toDateString();
   });

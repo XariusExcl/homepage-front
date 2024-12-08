@@ -30,21 +30,12 @@ class Mago {
   }
 
   start(id = 1){
-    gltfModelLoader.load('mago.glb', (gltf) => this.load(gltf, id), undefined, function (error) {
+    gltfModelLoader.load(`mago${id}.glb`, (gltf) => this.load(gltf, id), undefined, function (error) {
       console.error( error );
     });
   }
 
   load(gltf, id) {
-    const texture = textureLoader.load(`tex${id}.png`);
-    texture.flipY = false;
-    texture.colorSpace = THREE.SRGBColorSpace;
-    gltf.scene.traverse(function (child) {
-      if ( child.name.match(/MagoMesh$/) ) {
-        child.material.map = texture;
-      }
-    });
-  
     this.instance = gltf.scene;
 
     const hitbox = new THREE.Mesh(new THREE.BoxGeometry(1.2, 2., 0.8), new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true }));

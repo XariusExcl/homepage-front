@@ -16,7 +16,7 @@ export default function() {
     <title>The Mages' Blog</title>
     <link rel="icon" href="/favicon.png" />
   </head>
-  <body>
+  <body class="min-h-screen">
     <div id="content" class="flex flex-col w-full mb-14">
       <div class="w-10/12 mx-auto pt-6">
         <h2 class="text-8xl font-bold">Blog</h2>

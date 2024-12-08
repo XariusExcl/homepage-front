@@ -137,10 +137,6 @@ body, html {
   scroll-behavior: smooth;
 }
 
-#content {
-  background: url('bg.png') repeat;
-}
-
 @keyframes fadeIn {
   from {
     opacity: 0;
