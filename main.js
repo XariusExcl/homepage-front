@@ -140,6 +140,13 @@ class Mago {
     this.state = newState;
     if (this.state === 'Fall') {
       this.timer = -Math.random();
+      const fallDust = new FallDustParticles();
+      fallDust.position.copy(this.instance.position);
+      fallDust.position.x += Math.sin(this.instance.rotation.y);
+      fallDust.position.z += Math.cos(this.instance.rotation.y);
+      fallDust.biasAngle = this.instance.rotation.y;
+      fallDust.start();
+      fallDustParticles.push(fallDust);
     }
     else {
       this.timer = 0;
@@ -280,7 +287,7 @@ class TorchParticles {
       positions[i * 3] = this.position.x + Math.random() * 0.5 - 0.25;
       positions[i * 3 + 1] = this.position.y + Math.random() * 0.1;
       positions[i * 3 + 2] = this.position.z + Math.random() * 0.5 - 0.25;
-      this.lifetime.setX(i, Math.random() * 3);
+      this.lifetime.setX(i, .2 + Math.random() * 3);
       this.size.setX(i, 80 + Math.random() * 20);
       this.life.setX(i, Math.random() * 3);
     }
@@ -300,6 +307,94 @@ class TorchParticles {
       if (life[i] > this.lifetime.getX(i)) {
         life[i] = 0;
       }
+    }
+    this.geometry.attributes.life.needsUpdate = true;
+  }
+}
+
+class FallDustParticles {
+  constructor() {
+    this.count = 6;
+    this.position = new THREE.Vector3(0, 0, 0);
+    this.geometry = new THREE.BufferGeometry();
+    this.material = new THREE.ShaderMaterial({
+      uniforms: {
+        color: { value: new THREE.Color(0x99ccff) },
+        map: { value: new THREE.TextureLoader().load('smoke.png') }
+      },
+      vertexShader: `
+        attribute vec2 velocity;
+        attribute float lifetime;
+        attribute float size;
+        attribute float life;
+        varying float vLife;
+
+        void main() {
+          vLife = min(life / lifetime, 1.0);
+          float velocityFactor = -2./(life+.65)+3.;
+          vec4 mvPosition = modelViewMatrix * vec4(position + vec3(velocity.x * velocityFactor, life * life * .1, velocity.y * velocityFactor), 1.0);
+          gl_Position = projectionMatrix * mvPosition;
+          gl_PointSize = size * (2.-2./(vLife+1.))/gl_Position.w * 10.0;
+        }
+      `,
+      fragmentShader: `
+        uniform vec3 color;
+        uniform sampler2D map;
+        varying float vLife;
+        void main() {
+          vec4 texColor = texture(map, gl_PointCoord);
+          gl_FragColor = vec4(color, -vLife*(2.*vLife-2.)) * texColor;
+        }
+      `,
+      transparent: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false
+    });
+    this.points = null;
+    this.lifetime = new THREE.Float32BufferAttribute(new Float32Array(this.count), 1);
+    this.size = new THREE.Float32BufferAttribute(new Float32Array(this.count), 1);
+    this.life = new THREE.Float32BufferAttribute(new Float32Array(this.count), 1);
+    this.particleSystemLifetime = 2;
+    this.startDelay = .55;
+    this.biasAngle = 0;
+    this.timer = 0;
+  }
+
+  start() {
+    const positions = new Float32Array(this.count * 3);
+    const velocities = new Float32Array(this.count * 2);
+    for (let i = 0; i < this.count; i++) {
+      const angle = this.biasAngle + ((i<this.count/2)?-Math.PI/3:Math.PI/3) + Math.random() * Math.PI / 4 - Math.PI / 8;
+      positions[i * 3] = Math.sin(angle) * Math.random() * .5 + this.position.x;
+      positions[i * 3 + 1] = this.position.y + Math.random() * .1;
+      positions[i * 3 + 2] = Math.cos(angle) * Math.random() * .5 + this.position.z;
+      velocities[i * 2] = positions[i*3] - this.position.x;
+      velocities[i * 2 + 1] = positions[i*3+2] - this.position.z
+      this.lifetime.setX(i, 1.5 + Math.random() * .5);
+      this.size.setX(i, 80 + Math.random() * 20);
+      this.life.setX(i, -this.startDelay -Math.random() * .2);
+    }
+    this.geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+    this.geometry.setAttribute('velocity', new THREE.Float32BufferAttribute(velocities, 2));
+    this.geometry.setAttribute('lifetime', this.lifetime);
+    this.geometry.setAttribute('size', this.size);
+    this.geometry.setAttribute('life', this.life);
+    this.points = new THREE.Points(this.geometry, this.material);
+    this.timer = this.startDelay + this.particleSystemLifetime;
+    scene.add(this.points);
+  }
+
+  update(deltaTime) {
+    if (!this.points) return;
+    this.timer -= deltaTime;
+    const life = this.geometry.attributes.life.array;
+    if (this.timer < 0) {
+      scene.remove(this.points);
+      this.points = null;
+      return;
+    }
+    for (let i = 0; i < this.count; i++) {
+      life[i] += deltaTime;
     }
     this.geometry.attributes.life.needsUpdate = true;
   }
@@ -380,7 +475,6 @@ for (let i = 0; i < 4; i++) {
 
 const clock = new THREE.Clock();
 
-const textureLoader = new THREE.TextureLoader();
 const gltfModelLoader = new GLTFLoader();
 const magoArray = [];
 for (let i = 0; i < 3; i++) {
@@ -403,6 +497,8 @@ gltfModelLoader.load('gnd.glb' , function ( gltf ) {
 const dustParticles = new DustParticles();
 dustParticles.start();
 
+const fallDustParticles = [];
+
 function animate() {
 	requestAnimationFrame( animate );
   const delta = Math.min(clock.getDelta(), 0.2);
@@ -411,6 +507,7 @@ function animate() {
   torchParticles.forEach(torchParticles => torchParticles.update(delta));
   magoArray.forEach(mago => mago.update(delta));
   dustParticles.update(delta);
+  fallDustParticles.forEach(fallDustParticles => fallDustParticles.update(delta));
   // renderer.render( scene, camera );
   composer.render();
 }
