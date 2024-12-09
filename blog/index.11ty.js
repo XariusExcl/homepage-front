@@ -16,7 +16,7 @@ export default function() {
     <title>The Mages' Blog</title>
     <link rel="icon" href="/favicon.png" />
   </head>
-  <body class="min-h-screen">
+  <body class="flex flex-col justify-between min-h-screen">
     <div id="content" class="flex flex-col w-full mb-14">
       <div class="w-10/12 mx-auto pt-6">
         <h2 class="text-8xl font-bold">Blog</h2>
@@ -42,7 +42,7 @@ export default function() {
         </div>
       </div>
     </div>
-    <footer class="absolute w-full bottom-0">
+    <footer class="mt-4">
       <div class="flex justify-center bg-gray-950 bg-opacity-40 p-4">
         <p class="text-sm">© 2024 Three Little Mages - All rights reserved.</p>
       </div>
