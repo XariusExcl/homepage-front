@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="build/output.css" />
   <title>The Three Little Mages' Home</title>
+  <meta name="title" content="Three Little Mages" />
+  <meta name="description" content="Little mages making magic-infused games!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://threelittlemages.com/" />
+  <meta property="og:title" content="Three Little Mages" />
+  <meta property="og:description" content="Little mages making magic-infused games!" />
+  <meta property="og:image" content="/favicon.png" />
   <link rel="icon" href="/favicon.png" />
   <script type="module" src="main.js"></script>
 </head>
@@ -14,7 +21,7 @@
   <div class="flex flex-col items-center py-8 md:py-16 absolute -translate-x-1/2 md:translate-y-16 left-1/2 w-full md:max-w-[720px] lg:max-w-[960px] bg-gray-950 bg-opacity-40 md:rounded-xl ">
     <h1 class="text-4xl md:text-6xl lg:text-8xl font-bold mb-4 flex">
       <span class="block aos-fade-in ml-1.5 md:ml-3 lg:ml-4" >Three</span>
-      <span class="block aos-fade-in ml-1.5 md:ml-3 lg:ml-4" style="animation-delay: .3s !important;">Little</span>
+      <span class="block aos-fade-in ml-1.5 md:ml-3 lg:ml-4 animation-delay-300">Little</span>
       <span class="block aos-fade-in ml-1.5 md:ml-3 lg:ml-4" style="animation-delay: .35s !important;">Mages</span></h1>
     <hr class="w-1/2" />
     <p class="text-lg mt-2">Welcome to our homepage!</p>
@@ -24,7 +31,10 @@
   </div>
   <div id="content" class="absolute top-full flex flex-col w-full">
     <div id="about" class="min-h-screen w-10/12 flex flex-col mx-auto pt-6">
-      <h2 class="text-8xl font-bold aos-fade-in">About us</h2>
+      <div class="flex">
+        <img src="shapes-02.svg" class="aos-fade-in hidden md:block relative top-6 right-2 w-16 h-16">
+        <h2 class="text-8xl font-bold aos-fade-in animation-delay-300">About us</h2>
+      </div>
       <hr class="w-1/2" />
       <div class="ml-5 my-8">
         <p class="text-2xl">We are little mages who love to code and create things.</p>
@@ -41,7 +51,10 @@
       </div>
     </div>
     <div id="projects" class="min-h-screen w-10/12 mx-auto pt-6">
-      <h2 class="text-8xl font-bold aos-fade-in">Games & projects</h2>
+      <div class="flex">
+        <img src="shapes-03.svg" class="aos-fade-in hidden md:block relative top-6 right-2 w-16 h-16">
+        <h2 class="text-8xl font-bold aos-fade-in animation-delay-300">Games & projects</h2>
+      </div>
       <hr class="w-1/2" />
       <div class="flex justify-center md:mt-40 mt-20">
         <div class="flex justify-center flex-col flex-wrap mt-5 md:flex-row">
@@ -79,7 +92,10 @@
       </div>
     </div>
     <div id="socials" class="w-10/12 mx-auto h- pt-6 pb-32">
-      <h2 class="text-8xl font-bold aos-fade-in">Socials</h2>
+      <div class="flex">
+        <img src="shapes-04.svg" class="aos-fade-in hidden md:block relative top-6 right-2 w-16 h-16">
+        <h2 class="text-8xl font-bold aos-fade-in animation-delay-300">Socials</h2>
+      </div>
       <hr class="w-1/2" />
       <div class="ml-5 mt-5">
         <p class="text-2xl">Follow us on human social media:</p>

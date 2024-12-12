@@ -1,6 +1,8 @@
 ---
 layout: blogpost.njk
 title: Markdown test
+filename: markdown-test
+description: A markdown rendering test page.
 date: 2024-11-14
 visibility: hidden
 ---

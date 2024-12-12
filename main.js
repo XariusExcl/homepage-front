@@ -314,7 +314,7 @@ class TorchParticles {
 
 class FallDustParticles {
   constructor() {
-    this.count = 6;
+    this.count = 7;
     this.position = new THREE.Vector3(0, 0, 0);
     this.geometry = new THREE.BufferGeometry();
     this.material = new THREE.ShaderMaterial({
@@ -331,7 +331,7 @@ class FallDustParticles {
 
         void main() {
           vLife = min(life / lifetime, 1.0);
-          float velocityFactor = -2./(life+.65)+3.;
+          float velocityFactor = -1.2/(life+.4)+3.;
           vec4 mvPosition = modelViewMatrix * vec4(position + vec3(velocity.x * velocityFactor, life * life * .1, velocity.y * velocityFactor), 1.0);
           gl_Position = projectionMatrix * mvPosition;
           gl_PointSize = size * (2.-2./(vLife+1.))/gl_Position.w * 10.0;
@@ -343,7 +343,7 @@ class FallDustParticles {
         varying float vLife;
         void main() {
           vec4 texColor = texture(map, gl_PointCoord);
-          gl_FragColor = vec4(color, -vLife*(2.*vLife-2.)) * texColor;
+          gl_FragColor = vec4(color, .5-pow(vLife-.2, 3.)) * texColor;
         }
       `,
       transparent: true,
@@ -354,7 +354,7 @@ class FallDustParticles {
     this.lifetime = new THREE.Float32BufferAttribute(new Float32Array(this.count), 1);
     this.size = new THREE.Float32BufferAttribute(new Float32Array(this.count), 1);
     this.life = new THREE.Float32BufferAttribute(new Float32Array(this.count), 1);
-    this.particleSystemLifetime = 2;
+    this.particleSystemLifetime = 2.5;
     this.startDelay = .55;
     this.biasAngle = 0;
     this.timer = 0;
@@ -365,9 +365,9 @@ class FallDustParticles {
     const velocities = new Float32Array(this.count * 2);
     for (let i = 0; i < this.count; i++) {
       const angle = this.biasAngle + ((i<this.count/2)?-Math.PI/3:Math.PI/3) + Math.random() * Math.PI / 4 - Math.PI / 8;
-      positions[i * 3] = Math.sin(angle) * Math.random() * .5 + this.position.x;
+      positions[i * 3] = Math.sin(angle) * (Math.random() * .3 + .1) + this.position.x;
       positions[i * 3 + 1] = this.position.y + Math.random() * .1;
-      positions[i * 3 + 2] = Math.cos(angle) * Math.random() * .5 + this.position.z;
+      positions[i * 3 + 2] = Math.cos(angle) * (Math.random() * .3 + .1) + this.position.z;
       velocities[i * 2] = positions[i*3] - this.position.x;
       velocities[i * 2 + 1] = positions[i*3+2] - this.position.z
       this.lifetime.setX(i, 1.5 + Math.random() * .5);
@@ -435,7 +435,7 @@ controls.enableZoom = false
 controls.enableDamping = true;
 controls.enablePan = false;
 controls.target.set(0, 1, 0);
-controls.maxPolarAngle = Math.PI / 2;
+controls.maxPolarAngle = Math.PI / 2.2;
 controls.minPolarAngle = Math.PI / 8;
 controls.update();
 
@@ -530,7 +530,9 @@ function resize() {
   
   camera.aspect = width / height;
   const cameraAngle = Math.atan2(camera.position.z, camera.position.x);
-  const cameraDistance = 8.54 * Math.max(1, height / (1.25*width));
+  const aspectRatioFactor = Math.min(Math.max(1, height / width), 1.5);
+  const cameraDistance = 8.54 * aspectRatioFactor;
+  controls.maxPolarAngle = Math.PI / (2.2 * aspectRatioFactor);
   camera.position.set(Math.cos(cameraAngle) * cameraDistance, camera.position.y, Math.sin(cameraAngle) * cameraDistance);
   camera.updateProjectionMatrix();
 

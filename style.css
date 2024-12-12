@@ -156,3 +156,11 @@ body, html {
 .aos-fade-in.visible {
   animation: fadeIn .25s ease-out .25s forwards;
 }
+
+.animation-delay-300 {
+  animation-delay: 300ms !important;
+}
+
+.animation-delay-350 {
+  animation-delay: 350ms !important;
+}

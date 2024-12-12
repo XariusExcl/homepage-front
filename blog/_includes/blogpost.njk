@@ -9,6 +9,13 @@ title: The Three Little Mages' Blog
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/assets/index-C9QjCrrO.css" />
   <title>{{ title }}</title>
+  <meta name="title" content="{{ title }}" />
+  <meta name="description" content="{{ description }}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://threelittlemages.com/blog/{{ filename }}/" />
+  <meta property="og:title" content="{{ title }}" />
+  <meta property="og:description" content="{{ description }}" />
+  <meta property="og:image" content="/favicon.png" />
   <link rel="icon" href="/favicon.png" />
 </head>
 <body class="flex flex-col justify-between min-h-screen">

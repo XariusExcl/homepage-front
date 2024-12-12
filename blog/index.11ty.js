@@ -15,6 +15,13 @@ export default function() {
     <link rel="stylesheet" href="/assets/${cssFileName}" />
     <title>The Mages' Blog</title>
     <link rel="icon" href="/favicon.png" />
+    <meta name="title" content="The Mages' Blog" />
+    <meta name="description" content="Welcome to our blog! Here you can find the latest news and updates from the Three Little Mages." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://threelittlemages.com/blog/" />
+    <meta property="og:title" content="The Mages' Blog" />
+    <meta property="og:description" content="Welcome to our blog! Here you can find the latest news and updates from the Three Little Mages." />
+    <meta property="og:image" content="/favicon.png" />
   </head>
   <body class="flex flex-col justify-between min-h-screen">
     <div id="content" class="flex flex-col w-full mb-14">
