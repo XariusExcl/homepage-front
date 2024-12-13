@@ -1,8 +1,8 @@
 # Three Little Mages' Home
 
-v2!
-
 A very simple static site using vite, threejs, tailwindcss and eleventy for blogging.
+
+[threelittlemages.com](https://threelittlemages.com)
 
 ## Requirements
 
@@ -11,5 +11,6 @@ A very simple static site using vite, threejs, tailwindcss and eleventy for blog
 ## Install
 
 - `npm i` to install dependencies.
+- `npx tailwindcss -i style.css -o build/output.css` to build css (with optional `--watch` parameter for development)
 - `npm run build` to build the whole website.
 - `npm run build:blog` to only compile the markdown files in blog/ to static pages.

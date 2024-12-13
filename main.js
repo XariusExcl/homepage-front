@@ -319,7 +319,7 @@ class FallDustParticles {
     this.geometry = new THREE.BufferGeometry();
     this.material = new THREE.ShaderMaterial({
       uniforms: {
-        color: { value: new THREE.Color(0x99ccff) },
+        color: { value: new THREE.Color(0x70a0ff) },
         map: { value: new THREE.TextureLoader().load('smoke.png') }
       },
       vertexShader: `
@@ -343,7 +343,7 @@ class FallDustParticles {
         varying float vLife;
         void main() {
           vec4 texColor = texture(map, gl_PointCoord);
-          gl_FragColor = vec4(color, .5-pow(vLife-.2, 3.)) * texColor;
+          gl_FragColor = vec4(color, max(.5-pow(vLife-.2, 3.), 0.)) * texColor;
         }
       `,
       transparent: true,
