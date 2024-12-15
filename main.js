@@ -59,7 +59,13 @@ class Mago {
     });
 
     this.setState('Idle');
-    this.instance.position.set(Math.random() * 10 - 5, 0, Math.random() * 10 - 5);
+    do {
+      this.instance.position.set(Math.random() * 10 - 5, 0, Math.random() * 10 - 5);
+    } while (magoArray.some(mago => {
+        const dist = mago.instance?.position.distanceTo(this.instance.position)
+        return dist !== 0 && dist < 2;
+    }));
+
     this.instance.rotation.y = (Math.random() - 0.5) * Math.PI * 2;
     this.timer = - Math.random() * 2;
     scene.add(this.instance);
@@ -479,8 +485,8 @@ const gltfModelLoader = new GLTFLoader();
 const magoArray = [];
 for (let i = 0; i < 3; i++) {
   const mago = new Mago();
-  magoArray.push(mago);
   mago.start(i + 1);
+  magoArray.push(mago);
 }
 
 gltfModelLoader.load('gnd.glb' , function ( gltf ) {
