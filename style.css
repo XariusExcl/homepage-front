@@ -173,3 +173,15 @@ body, html {
 .animation-delay-350 {
   animation-delay: 350ms !important;
 }
+
+.link {
+  @apply text-lg mx-2 bg-gray-950 bg-opacity-40 p-4 mt-4 rounded-xl transition-all hover:scale-105;
+}
+
+.card {
+  @apply w-full h-48 lg:h-96 rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-110 overflow-hidden;
+}
+
+.card-bg {
+  @apply object-cover object-center h-full w-full scale-110 transition-transform duration-300 hover:scale-100;
+}
